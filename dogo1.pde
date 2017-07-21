@@ -41,7 +41,7 @@ PImage[] images = new PImage[numFrames]; // Image array
 //PImage img;
 void setup() {
   size(1000, 1000);
-  frameRate(.5); // Maximum 30 frames per second 
+  frameRate(5); // Maximum 30 frames per second 
   //image(loadImage("dogo-1.png"), 0, 0);
   images[0] = loadImage("dogo-1.png");
   images[1] = loadImage("dogo-2.png"); 
@@ -111,13 +111,9 @@ void setup() {
   //images[65] = loadImage("dogo-65 (dragged).tiff");
 }
 void draw() { 
-background(0);
-  frame = (frame+1) % numFrames;  // Use % to cycle through frames
-  int offset = 0;
-  for (int x = -100; x < width; x += images[0].width) { 
-    image(images[(frame+offset) % numFrames], x, -20);
-    offset+=2;
-    image(images[(frame+offset) % numFrames], x, height/2);
-    offset+=2;
+  frame++;
+  if (frame == numFrames) {
+    frame = 0;
   }
+  image(images[frame], 0, 0);
 }
